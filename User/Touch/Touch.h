@@ -18,6 +18,7 @@ typedef struct
 	short xoff;
 	short yoff;
 }Pen_Holder;
+
 extern Pen_Holder Pen_Point;
 
 /*´¥ÃşÆÁĞ¾Æ¬Á¬½ÓÒı½ÅÅäÖÃ	*/   

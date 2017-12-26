@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_HD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS;..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\User;..\User\LCD;..\User\Touch;..\User\sys</IncludePath>
+              <IncludePath>..\Libraries\CMSIS;..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\User;..\User\LCD;..\User\Touch;..\User\sys;..\User\usart;..\User\i2c Delay;..\User\delay</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -569,6 +569,31 @@
               <FileName>hz16.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\LCD\hz16.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>usart</GroupName>
+          <Files>
+            <File>
+              <FileName>bsp_usart.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\usart\bsp_usart.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>IIc</GroupName>
+          <Files>
+            <File>
+              <FileName>Delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\delay\Delay.c</FilePath>
+            </File>
+            <File>
+              <FileName>i2c.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\i2c Delay\i2c.c</FilePath>
             </File>
           </Files>
         </Group>

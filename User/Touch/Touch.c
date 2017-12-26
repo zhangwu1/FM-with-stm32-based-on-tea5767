@@ -319,12 +319,18 @@ void Touch_Init()
   //	EXTI_GenerateSWInterrupt(EXTI_Line4);
 
 	LCD_Clear(WHITE);//清屏
-    Touch_Adjust();  //屏幕校准,带自动保存			   
+    Touch_Adjust();  //屏幕校准,带自动保存	   
 }
 void Touch_Configuration()
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
-
+	/*
+	//对触控屏校准参数初始化
+	Pen_Point.xfac=0.133067;
+	Pen_Point.yfac=0.177440;
+	Pen_Point.xoff=0.000000;
+	Pen_Point.yoff=0.000000;
+	*/
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC, ENABLE );  //重要！！
 
 	//下面是SPI相关GPIO初始化
@@ -360,10 +366,14 @@ void Pen_Int_Set(uint8_t en)
 //中断线4线上的中断检测
 void EXTI4_IRQHandler()
 {
+	//Pen_Int_Set(DISABLE);
   if(EXTI_GetITStatus(EXTI_IMR_MR4) != RESET)
 	{
-		Pen_Point.Key_Sta=Key_Down;//按键按下  		  				 
+		Pen_Point.Key_Sta=Key_Down;//按键按下  		
+		Read_ADS2(&Pen_Point.X,&Pen_Point.Y);//刷新触控坐标
+		Convert_Pos();
     	/* Clear the Key Button EXTI line pending bit */
     	EXTI_ClearITPendingBit(EXTI_IMR_MR4);
 	}
+	//Pen_Int_Set(ENABLE);
 }
