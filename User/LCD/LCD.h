@@ -5,8 +5,6 @@
 #include "stm32f10x.h"
 //2.4/2.8寸TFT液晶驱动(ILI9325/RM68021/ILI9320 Verision)
 //TFTLCD 驱动代码			 
-//www.openmcu.com
-//2010/11/5
 
 //TFTLCD部分外要调用的函数		   
 extern u16  POINT_COLOR;//默认红色    

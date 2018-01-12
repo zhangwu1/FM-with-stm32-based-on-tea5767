@@ -35,3 +35,78 @@ xfac:0.130890   yfac:-0.177440  xoff:0.000000  yoff:0.000000
 xfac:0.133244   yfac:-0.172414  xoff:0.000000  yoff:0.000000 
 
 **end**
+
+
+
+
+
+
+
+
+2017/12/26
+**revised by Liu si kun**
+************************************************************
+write a report that shows uses of GPIOS and interrupts
+add spi apis
+************************************************************
+
+UASRT1
+#define  DEBUG_USART_TX_GPIO_PORT       GPIOA   
+#define  DEBUG_USART_TX_GPIO_PIN        GPIO_Pin_9
+#define  DEBUG_USART_RX_GPIO_PORT       GPIOA
+#define  DEBUG_USART_RX_GPIO_PIN        GPIO_Pin_10
+
+#define  DEBUG_USART_IRQ                USART1_IRQn
+#define  DEBUG_USART_IRQHandler         USART1_IRQHandler
+
+LCD
+//-----------------LCD端口定义---------------- 
+//#define	LCD_LED PCout(10) //LCD背光    		 PC10
+#define	LCD_CS	PDout(12)  //片选端口  	     PD12
+#define	LCD_RS	PDout(13)  //数据/命令       PD13	   
+#define	LCD_WR	PDout(14)  //写数据			 PD14
+#define	LCD_RD	PDout(15)  //读数据			 PD15
+								    
+//PB0~15,作为数据线
+#define DATAOUT(x) GPIOE->ODR=x; //数据输出	
+#define DATAIN     GPIOE->IDR;   //数据输入   
+
+Touch(spi)
+//下面是SPI相关GPIO初始化//pa5,7
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_5 | GPIO_Pin_7;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;  //通用推挽输出
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA,&GPIO_InitStructure);
+
+	//下面是SPI相关GPIO初始化
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;  //上拉输入
+	GPIO_Init(GPIOA,&GPIO_InitStructure);
+
+	//Configure PC6 pin: TP_CS pin 
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_6; 
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP; 	//推挽输出
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz; 
+	GPIO_Init(GPIOC,&GPIO_InitStructure);
+
+	//Configure PC4 pin: TP_INT pin 
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_4; 
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU; 	//上拉输入
+	GPIO_Init(GPIOC,&GPIO_InitStructure);
+	
+EXTI4_IRQHandler()//PC4
+
+IIC//FT 5V tolerate//5V容忍管脚
+#define SDA_PORT        GPIOE 
+#define SDA_PIN         GPIO_Pin_7
+
+#define SCL_PORT        GPIOE
+#define SCL_PIN         GPIO_Pin_8
+
+**end**
+
+
+
+
+
+

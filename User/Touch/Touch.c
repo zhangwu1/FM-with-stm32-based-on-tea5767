@@ -324,13 +324,13 @@ void Touch_Init()
 void Touch_Configuration()
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
-	/*
+	
 	//对触控屏校准参数初始化
 	Pen_Point.xfac=0.133067;
-	Pen_Point.yfac=0.177440;
+	Pen_Point.yfac=-0.183126;
 	Pen_Point.xoff=0.000000;
 	Pen_Point.yoff=0.000000;
-	*/
+	
 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA | RCC_APB2Periph_GPIOC, ENABLE );  //重要！！
 
 	//下面是SPI相关GPIO初始化
