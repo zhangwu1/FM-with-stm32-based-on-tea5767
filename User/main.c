@@ -12,6 +12,7 @@ void NVIC_Configuration(void);//中断初始化
 
 int main(void)
 {
+	int i;
 	NVIC_Configuration();
 	USART_Config();
 	I2C_Config();
@@ -22,8 +23,9 @@ int main(void)
 	//printf("xfac:%f   yfac:%f  xoff:%f  yoff:%f \n",Pen_Point.xfac,Pen_Point.yfac,Pen_Point.xoff,Pen_Point.yoff);//触控测试参数
 	while(1)
 	{
+		scanf("%d",&i);
 		LCD_Clear(WHITE);
-	
+		printf("xnk=%d",i);
 		Draw_Big_Point(Pen_Point.X0,Pen_Point.Y0);   
 	
 	}

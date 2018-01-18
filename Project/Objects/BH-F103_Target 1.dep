@@ -698,7 +698,7 @@ I (..\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_spi.h)(0x5A3CFDC0)
 I (..\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_tim.h)(0x5A3CFDC0)
 I (..\Libraries\STM32F10x_StdPeriph_Driver\inc\stm32f10x_usart.h)(0x5A3CFDC0)
 I (..\Libraries\STM32F10x_StdPeriph_Driver\inc\misc.h)(0x5A3CFDC0)
-F (..\User\main.c)(0x5A58A0DE)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Libraries\CMSIS -I ..\Libraries\STM32F10x_StdPeriph_Driver\inc -I ..\User -I ..\User\LCD -I ..\User\Touch -I ..\User\sys -I ..\User\usart -I "..\User\i2c Delay" -I ..\User\delay-I.\RTE\_Target_1-ID:\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
+F (..\User\main.c)(0x5A5EEC3A)(-c --cpu Cortex-M3 -D__MICROLIB -g -O0 --apcs=interwork --split_sections -I ..\Libraries\CMSIS -I ..\Libraries\STM32F10x_StdPeriph_Driver\inc -I ..\User -I ..\User\LCD -I ..\User\Touch -I ..\User\sys -I ..\User\usart -I "..\User\i2c Delay" -I ..\User\delay-I.\RTE\_Target_1-ID:\ARM\PACK\Keil\STM32F1xx_DFP\2.2.0\Device\Include-ID:\ARM\CMSIS\Include-D__UVISION_VERSION="524" -DSTM32F10X_HD -DUSE_STDPERIPH_DRIVER -DSTM32F10X_HD-o .\objects\main.o --omf_browse .\objects\main.crf --depend .\objects\main.d)
 I (..\Libraries\CMSIS\stm32f10x.h)(0x5A3CFDC0)
 I (..\Libraries\CMSIS\core_cm3.h)(0x5A3CFDC0)
 I (D:\ARM\ARMCC\include\stdint.h)(0x588B8344)
