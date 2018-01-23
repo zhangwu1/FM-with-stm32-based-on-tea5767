@@ -336,7 +336,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER,STM32F10X_HD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Libraries\CMSIS;..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\User;..\User\LCD;..\User\Touch;..\User\sys;..\User\usart;..\User\i2c Delay;..\User\delay</IncludePath>
+              <IncludePath>..\Libraries\CMSIS;..\Libraries\STM32F10x_StdPeriph_Driver\inc;..\User;..\User\LCD;..\User\Touch;..\User\sys;..\User\usart;..\User\i2c Delay;..\User\delay;..\User\fm;..\User\tea5767</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -570,6 +570,11 @@
               <FileType>1</FileType>
               <FilePath>..\User\LCD\hz16.c</FilePath>
             </File>
+            <File>
+              <FileName>GUI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\LCD\GUI.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -604,6 +609,26 @@
               <FileName>spi.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\spi\spi.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>fm</GroupName>
+          <Files>
+            <File>
+              <FileName>fm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\fm\fm.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>tea5767</GroupName>
+          <Files>
+            <File>
+              <FileName>TEA5767.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\tea5767\TEA5767.c</FilePath>
             </File>
           </Files>
         </Group>

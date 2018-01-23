@@ -20,7 +20,17 @@
 
 
 void I2C_Config(void);
+
 uint8_t I2C_Read(uint8_t Address, uint8_t * pbuffer, uint8_t num);
 uint8_t I2C_Write(uint8_t Address, const uint8_t * pbuffer, uint8_t num);
+
+void I2C_StartCondition(void);
+void I2C_StopCondition(void);
+void I2C_SendByte(uint8_t Data);
+uint8_t I2C_SendAddress(uint8_t Address, uint8_t flag_rw);
+uint8_t I2C_TestAck(void);
+uint8_t I2C_ReceiveByte(void);
+void I2C_SendAck(void);
+
 
 #endif

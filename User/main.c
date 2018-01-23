@@ -1,33 +1,38 @@
 
 #include "stm32f10x.h"  
 #include "sys.h"
-#include "LCD.h"
-#include "Touch.h"
 #include "bsp_usart.h"
 #include "i2c.h"
-
-extern Pen_Holder Pen_Point;//触控坐标
+#include "GUI.h"
+#include "LCD.h"
+#include "Touch.h"
+#include "fm.h"
 
 void NVIC_Configuration(void);//中断初始化
+extern int TOUCH_LOC;
 
 int main(void)
 {
-	int i;
+
 	NVIC_Configuration();
 	USART_Config();
 	I2C_Config();
-	LCD_Init();
-	LCD_Clear(WHITE);	
+	LCD_Init();	
 	Pen_Int_Set(ENABLE);//使能触控中断
-	Touch_Init();
+	//Touch_Init();
 	//printf("xfac:%f   yfac:%f  xoff:%f  yoff:%f \n",Pen_Point.xfac,Pen_Point.yfac,Pen_Point.xoff,Pen_Point.yoff);//触控测试参数
+	//while(1){
 	while(1)
 	{
-		scanf("%d",&i);
-		LCD_Clear(WHITE);
-		printf("xnk=%d",i);
-		Draw_Big_Point(Pen_Point.X0,Pen_Point.Y0);   
-	
+		printf("ok1");
+	FM_send();
+	delay_ms(1000);
+	}
+	while(1)
+	{	
+		Judge_loc();//判断是否有按钮被按下	
+		GUI_draw();
+		printf("%d",TOUCH_LOC);
 	}
 	
 }

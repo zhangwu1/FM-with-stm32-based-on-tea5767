@@ -22,16 +22,16 @@ void I2C_Config(void) {
 
     GPIO_InitTypeDef GPIO_InitStructure;
 
-    RCC_APB2PeriphClockCmd(SDA_RCC_PERIPH | SCL_RCC_PERIPH, ENABLE);  /* 打开GPIOB时钟*/
+    RCC_APB2PeriphClockCmd(SDA_RCC_PERIPH | SCL_RCC_PERIPH, ENABLE);  /* 打开GPIOE时钟*/
 
     GPIO_InitStructure.GPIO_Pin = SDA_PIN;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;	  /* 设置SDA()为开漏输出 */
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD; /* 设置SDA()为开漏输出 */
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(SDA_PORT, &GPIO_InitStructure);
 
     GPIO_InitStructure.GPIO_Pin = SCL_PIN;
     GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;	   /* 设置SCL()为开漏输出 */
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
     GPIO_Init(SCL_PORT, &GPIO_InitStructure);
 }
 
