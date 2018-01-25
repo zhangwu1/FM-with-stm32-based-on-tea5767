@@ -10,7 +10,6 @@
 
 void NVIC_Configuration(void);//中断初始化
 extern int TOUCH_LOC;
-
 int main(void)
 {
 
@@ -21,19 +20,13 @@ int main(void)
 	Pen_Int_Set(ENABLE);//使能触控中断
 	//Touch_Init();
 	//printf("xfac:%f   yfac:%f  xoff:%f  yoff:%f \n",Pen_Point.xfac,Pen_Point.yfac,Pen_Point.xoff,Pen_Point.yoff);//触控测试参数
-	//while(1){
-	while(1)
-	{
-		printf("ok1");
-	FM_send();
-	delay_ms(1000);
-	}
-	while(1)
-	{	
+
+	//while(1)//测试触控
+	//{	
 		Judge_loc();//判断是否有按钮被按下	
 		GUI_draw();
 		printf("%d",TOUCH_LOC);
-	}
+	//}
 	
 }
 void NVIC_Configuration(void)

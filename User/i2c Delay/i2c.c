@@ -1,7 +1,7 @@
 #include "i2c.h"
 #include "Delay.h"
 
-#define THALF           2
+#define THALF           4
 #define THIGH           2 * THALF 
 #define ER_NODEVICE     0x0FF
 #define ER_NOACK        0x0FE
@@ -39,10 +39,12 @@ void I2C_Config(void) {
 void I2C_StartCondition(void) {
 
     SET_SCL_HIGH;
+	delay_us(THALF);
     SET_SDA_HIGH;
     delay_us(THALF);
     SET_SDA_LOW;
     delay_us(THALF);
+	
 }
 
 /****主机产生I2C停止条件****/
@@ -117,9 +119,9 @@ uint8_t I2C_TestAck(void) {
     uint8_t  counter = 0;
 
     //在第9个时钟周期检测ACK信号
-    SET_SCL_LOW;
-    delay_us(THALF);
     SET_SDA_HIGH;
+    delay_us(THALF);
+	SET_SCL_LOW;
     delay_us(THALF);
     SET_SCL_HIGH;
     
