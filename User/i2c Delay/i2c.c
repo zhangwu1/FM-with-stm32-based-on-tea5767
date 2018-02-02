@@ -1,7 +1,7 @@
 #include "i2c.h"
 #include "Delay.h"
 
-#define THALF           4
+#define THALF           2
 #define THIGH           2 * THALF 
 #define ER_NODEVICE     0x0FF
 #define ER_NOACK        0x0FE
@@ -17,37 +17,36 @@ uint8_t I2C_TestAck(void);
 uint8_t I2C_ReceiveByte(void);
 void I2C_SendAck(void);
 
-/****I2C端口配置****/
+/****I2C????****/
 void I2C_Config(void) {
 
+	
     GPIO_InitTypeDef GPIO_InitStructure;
 
-    RCC_APB2PeriphClockCmd(SDA_RCC_PERIPH | SCL_RCC_PERIPH, ENABLE);  /* 打开GPIOE时钟*/
+    RCC_APB2PeriphClockCmd(SDA_RCC_PERIPH | SCL_RCC_PERIPH, ENABLE);  /* ??GPIOB??*/
 
     GPIO_InitStructure.GPIO_Pin = SDA_PIN;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD; /* 设置SDA()为开漏输出 */
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;	  /* ??SDA(PB11)????? */
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
     GPIO_Init(SDA_PORT, &GPIO_InitStructure);
 
     GPIO_InitStructure.GPIO_Pin = SCL_PIN;
-    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;	   /* 设置SCL()为开漏输出 */
-    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+    GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;	   /* ??SCL(PB10)????? */
+    GPIO_InitStructure.GPIO_Speed = GPIO_Speed_2MHz;
     GPIO_Init(SCL_PORT, &GPIO_InitStructure);
 }
 
-/*****主机产生I2C起始条件*****/
+/*****????I2C????*****/
 void I2C_StartCondition(void) {
 
     SET_SCL_HIGH;
-	delay_us(THALF);
     SET_SDA_HIGH;
     delay_us(THALF);
     SET_SDA_LOW;
     delay_us(THALF);
-	
 }
 
-/****主机产生I2C停止条件****/
+/****????I2C????****/
 void I2C_StopCondition(void) {
 
     SET_SCL_LOW;
@@ -61,7 +60,7 @@ void I2C_StopCondition(void) {
 }
 
 
-/*****主机向从机发送数据*****/
+/*****?????????*****/
 void I2C_SendByte(uint8_t Data) {
 
     uint8_t i;
@@ -82,7 +81,7 @@ void I2C_SendByte(uint8_t Data) {
 }
 
 
-/***主机发送寻址字节SLA(7位器件地址 + 1位数据传送方向位(r/w))***/
+/***????????SLA(7????? + 1????????(r/w))***/
 uint8_t I2C_SendAddress(uint8_t Address, uint8_t flag_rw) {
 
     uint8_t  flag_ack = 0;
@@ -92,7 +91,7 @@ uint8_t I2C_SendAddress(uint8_t Address, uint8_t flag_rw) {
         I2C_SendByte(Address & 0x0FE);
     else
         I2C_SendByte(Address | 0x01);
-    //在第9个时钟周期检测ACK信号
+    //??9???????ACK??
     SET_SCL_LOW;
     delay_us(THALF);
     SET_SDA_HIGH;
@@ -112,16 +111,16 @@ uint8_t I2C_SendAddress(uint8_t Address, uint8_t flag_rw) {
 }
 
 
-/**** 检测应答信号****/
+/**** ??????****/
 uint8_t I2C_TestAck(void) {
 
     uint8_t  flag_ack = 0;
     uint8_t  counter = 0;
 
-    //在第9个时钟周期检测ACK信号
-    SET_SDA_HIGH;
+    //??9???????ACK??
+    SET_SCL_LOW;
     delay_us(THALF);
-	SET_SCL_LOW;
+    SET_SDA_HIGH;
     delay_us(THALF);
     SET_SCL_HIGH;
     
@@ -139,7 +138,7 @@ uint8_t I2C_TestAck(void) {
 }
 
 
-/*****主机接收从机发送过来的数据*****/
+/*****?????????????*****/
 uint8_t I2C_ReceiveByte(void) {
 
     uint8_t i;
@@ -163,10 +162,10 @@ uint8_t I2C_ReceiveByte(void) {
 }
 
 
-/*****发送应答信号*****/
+/*****??????*****/
 void I2C_SendAck(void) {
 
-    //在第9个时钟周期发送ACK信号
+    //??9???????ACK??
     SET_SCL_LOW;
     delay_us(THALF);
     SET_SDA_LOW;
@@ -214,5 +213,4 @@ uint8_t I2C_Write(uint8_t Address, const uint8_t * pbuffer, uint8_t num) {
     I2C_StopCondition();
     return num;
 }
-
 

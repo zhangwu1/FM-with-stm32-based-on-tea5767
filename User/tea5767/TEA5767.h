@@ -41,6 +41,14 @@ enum
 	ADC_LEVEL_7 = 2,
 	ADC_LEVEL_10 = 3
 };
+//目前状态
+enum
+{
+	standby=0,
+	loading=1,
+	saving=2,
+	searching=3
+};
 
 /* 定义一个TEA5767结构体 */
 typedef struct
@@ -52,6 +60,8 @@ typedef struct
 	uint8_t ucIFCount;				/* 中频计数器结果，正确调谐时值在31H至3EH之间 */
 	uint8_t ucAdcLevel;				/* ADC输出级别，即信号质量的级别 */
 	uint32_t ulFreq;				/* 频率 */
+	uint8_t Fr_searched;      /*计数已搜到频率*/
+	uint8_t cur_statue;          /*目前状况 */
 }TEA5767_T;
 
 uint8_t tea5767_Set(uint32_t _Freq, uint8_t _ucMuteEn, uint8_t _ucSerchEn, uint8_t _ucSearchUp, uint8_t _ucAdcLevel);

@@ -96,12 +96,12 @@ Touch(spi)
 	
 EXTI4_IRQHandler()//PC4
 
-IIC//FT 5V tolerate//5V»›»Ãπ‹Ω≈
-#define SDA_PORT        GPIOE 
+IIC
+#define SDA_PORT        GPIOB
 #define SDA_PIN         GPIO_Pin_7
 
-#define SCL_PORT        GPIOE
-#define SCL_PIN         GPIO_Pin_8
+#define SCL_PORT        GPIOB
+#define SCL_PIN         GPIO_Pin_6
 
 **end**
 

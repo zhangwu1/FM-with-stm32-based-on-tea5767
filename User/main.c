@@ -9,7 +9,8 @@
 #include "fm.h"
 
 void NVIC_Configuration(void);//中断初始化
-extern int TOUCH_LOC;
+extern int TOUCH_LOC;//按键判断
+extern TEA5767_T cerrent_FM;
 int main(void)
 {
 
@@ -18,15 +19,27 @@ int main(void)
 	I2C_Config();
 	LCD_Init();	
 	Pen_Int_Set(ENABLE);//使能触控中断
-	//Touch_Init();
-	//printf("xfac:%f   yfac:%f  xoff:%f  yoff:%f \n",Pen_Point.xfac,Pen_Point.yfac,Pen_Point.xoff,Pen_Point.yoff);//触控测试参数
-
-	//while(1)//测试触控
-	//{	
+	Touch_Init();
+     //printf("xfac:%f   yfac:%f  xoff:%f  yoff:%f \n",Pen_Point.xfac,Pen_Point.yfac,Pen_Point.xoff,Pen_Point.yoff);//触控测试参数
+	FM_dinit();//播放默认频道
+	
+	
+	while(1)
+	{	
+		TOUCH_LOC=0;
 		Judge_loc();//判断是否有按钮被按下	
-		GUI_draw();
-		printf("%d",TOUCH_LOC);
-	//}
+		GUI_draw(&cerrent_FM);
+		Draw_Big_Point(Pen_Point.X0,Pen_Point.Y0);
+		switch(TOUCH_LOC)
+		{
+			case SEARCH:
+				FM_search();
+				Pen_Point.X0=20;
+				Pen_Point.Y0=50;	
+			break;
+		}
+
+	}
 	
 }
 void NVIC_Configuration(void)

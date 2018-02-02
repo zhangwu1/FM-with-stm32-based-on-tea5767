@@ -374,6 +374,7 @@ void EXTI4_IRQHandler()
 		Convert_Pos();
     	/* Clear the Key Button EXTI line pending bit */
     	EXTI_ClearITPendingBit(EXTI_IMR_MR4);
+
 	}
 	//Pen_Int_Set(ENABLE);
 }

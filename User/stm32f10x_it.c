@@ -24,8 +24,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm32f10x_it.h"
 #include "bsp_usart.h"
+#include "Touch.h"
 
-int BUTTEN_FLAG;
 /** @addtogroup STM32F10x_StdPeriph_Template
   * @{
   */

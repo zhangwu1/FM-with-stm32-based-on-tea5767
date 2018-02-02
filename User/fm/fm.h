@@ -4,12 +4,8 @@
 #include "Delay.h"
 #include "TEA5767.h"
 #include "bsp_usart.h"
+#include "GUI.h"
 
-#define standby 0
-#define loading 1
-#define saving 2
-#define searching 3
-
-void FM_send(void);
-
+void 	FM_dinit(void);
+void FM_search(void);
 #endif
