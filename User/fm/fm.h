@@ -8,4 +8,7 @@
 
 void 	FM_dinit(void);
 void FM_search(void);
+void 	FM_test(void);
+void FM_Next(void);
+void FM_Last(void);
 #endif

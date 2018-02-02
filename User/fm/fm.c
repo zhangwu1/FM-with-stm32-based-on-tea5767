@@ -3,8 +3,41 @@
 
 unsigned char radio_test_data[5]={0x29,0xc2,0x20,0x11,0x00};//默认频道   
 uint32_t HZ_buff[225];//存储频率缓冲
+uint8_t HZ_buff_current;//目前播放频率在buff中位置
 TEA5767_T cerrent_FM;
 
+
+
+void 	FM_test(void)
+{
+	tea5767_Set(88100000, MUTE_OFF, SEARCH_ON, SEARCH_UP, FM_ADC_LEVEL);
+	delay_ms(1000);
+	tea5767_ReadStatus(&cerrent_FM);
+}	
+
+void FM_Next()
+{
+	if(cerrent_FM.Fr_searched!=0)
+	{
+		if(cerrent_FM.Fr_searched==(HZ_buff_current+1)){
+			HZ_buff_current++;
+			tea5767_Set(HZ_buff[HZ_buff_current], MUTE_OFF, SEARCH_ON, SEARCH_UP, FM_ADC_LEVEL);		
+		}
+	}
+	else{}
+}
+
+void FM_Last()
+{
+	if(cerrent_FM.Fr_searched!=0)
+	{
+		if(HZ_buff_current>0){
+			HZ_buff_current--;
+			tea5767_Set(HZ_buff[HZ_buff_current], MUTE_OFF, SEARCH_ON, SEARCH_UP, FM_ADC_LEVEL);		
+		}
+	}
+	else{}
+}
 
 void FM_search()
 {
@@ -21,7 +54,8 @@ void FM_search()
 			if(cerrent_FM.Fr_searched>0)
 			{
 				//存储
-				tea5767_Set(HZ_buff[0], MUTE_OFF, SEARCH_OFF, SEARCH_UP, FM_ADC_LEVEL);
+				tea5767_Set(HZ_buff[0], MUTE_OFF, SEARCH_ON, SEARCH_UP, FM_ADC_LEVEL);
+				HZ_buff_current=0;
 				goto OUT;
 			}
 			else
@@ -34,16 +68,16 @@ void FM_search()
 		{
 			if(cerrent_FM.ucReady==1)
 			{
-				if ((cerrent_FM.ucIFCount >= 0x31) 
-		    	&& (cerrent_FM.ucIFCount <= 0x3E) 
-		    	&& (cerrent_FM.ucAdcLevel >= 7)
-				&& (cerrent_FM.ucStereo == 1))
-				{
+				//if ((cerrent_FM.ucIFCount >= 0x31) 
+		    	//&& (cerrent_FM.ucIFCount <= 0x3E) 
+		    	//&& (cerrent_FM.ucAdcLevel >= 7)
+				//&& (cerrent_FM.ucStereo == 1))
+			//{
 							HZ_buff[cerrent_FM.Fr_searched]=cerrent_FM.ulFreq;
-							cerrent_FM.Fr_searched++;
+							cerrent_FM.Fr_searched=cerrent_FM.Fr_searched+1;
 							LCD_ShowNum(60,130,cerrent_FM.Fr_searched,2,16);
-				}
-				Freq = cerrent_FM.ulFreq + 100000;		
+				//}
+				Freq = cerrent_FM.ulFreq + 200000;		
 				tea5767_Set(Freq, MUTE_OFF, SEARCH_ON, SEARCH_UP, FM_ADC_LEVEL);
 			}
 			else{}

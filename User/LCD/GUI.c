@@ -6,13 +6,15 @@ int TOUCH_LOC=0;//按键位置1为SEARCH 2为LAST 3为NEXT
 
 void Judge_loc(void)
 {
-	
+	if(GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_4)==0)
+	{
 	if((Pen_Point.X0<50)&&(Pen_Point.Y0>50))
 		TOUCH_LOC=1;
 	else if((Pen_Point.X0<145)&&(Pen_Point.X0>50)&&(Pen_Point.Y0>Gus_LCM_YMAX-50))
 		TOUCH_LOC=2;
 	else if((Pen_Point.X0>145)&&(Pen_Point.Y0>Gus_LCM_YMAX-50))
 		TOUCH_LOC=3;
+	}
 }
 
 void GUI_draw(TEA5767_T *_tStatus)
@@ -40,7 +42,7 @@ void GUI_draw(TEA5767_T *_tStatus)
 	LCD_ShowString(80,Gus_LCM_YMAX-35,"Last");
 	
 	LCD_ShowString(60,188,"Current Channal   ");
-	LCD_ShowNum(60,210,temp_num[0],3,16);
+	LCD_ShowNum(55,210,temp_num[0],3,16);
 	LCD_ShowString(80,210,".");
 	LCD_ShowNum(90,210,temp_num[1],1,16);
 	LCD_ShowString(100,210,"MHZ");

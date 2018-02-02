@@ -22,8 +22,7 @@ int main(void)
 	Touch_Init();
      //printf("xfac:%f   yfac:%f  xoff:%f  yoff:%f \n",Pen_Point.xfac,Pen_Point.yfac,Pen_Point.xoff,Pen_Point.yoff);//触控测试参数
 	FM_dinit();//播放默认频道
-	
-	
+	//FM_test();
 	while(1)
 	{	
 		TOUCH_LOC=0;
@@ -34,8 +33,12 @@ int main(void)
 		{
 			case SEARCH:
 				FM_search();
-				Pen_Point.X0=20;
-				Pen_Point.Y0=50;	
+			break;
+			case LAST:
+				FM_Last();
+			break;
+			case NEXT:
+				FM_Next();
 			break;
 		}
 
