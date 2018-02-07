@@ -8,12 +8,12 @@ void Judge_loc(void)
 {
 	if(GPIO_ReadInputDataBit(GPIOC, GPIO_Pin_4)==0)
 	{
-	if((Pen_Point.X0<50)&&(Pen_Point.Y0>50))
-		TOUCH_LOC=1;
+	if((Pen_Point.X0<50)&&(Pen_Point.Y0>(Gus_LCM_YMAX-50)))
+		TOUCH_LOC=SEARCH;
 	else if((Pen_Point.X0<145)&&(Pen_Point.X0>50)&&(Pen_Point.Y0>Gus_LCM_YMAX-50))
-		TOUCH_LOC=2;
+		TOUCH_LOC=LAST;
 	else if((Pen_Point.X0>145)&&(Pen_Point.Y0>Gus_LCM_YMAX-50))
-		TOUCH_LOC=3;
+		TOUCH_LOC=NEXT;
 	}
 }
 

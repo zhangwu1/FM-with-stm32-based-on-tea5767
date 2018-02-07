@@ -6,7 +6,26 @@ uint32_t HZ_buff[225];//存储频率缓冲
 uint8_t HZ_buff_current;//目前播放频率在buff中位置
 TEA5767_T cerrent_FM;
 
-
+void FM_Set(int HZ)
+{
+	int i=0;
+	while(i<2)//最多搜三次
+	{
+		tea5767_Set(HZ, MUTE_OFF, SEARCH_ON, SEARCH_UP, FM_ADC_LEVEL);
+		delay_ms(30);
+		tea5767_ReadStatus(&cerrent_FM);
+		if(cerrent_FM.ucReady==1)
+			break;
+		else{
+			tea5767_Set(HZ, MUTE_OFF, SEARCH_ON, SEARCH_DOWN, FM_ADC_LEVEL);
+			delay_ms(30);
+		tea5767_ReadStatus(&cerrent_FM);
+		if(cerrent_FM.ucReady==1)
+			break;
+		}
+		i++;
+	}
+}
 
 void 	FM_test(void)
 {
@@ -17,14 +36,19 @@ void 	FM_test(void)
 
 void FM_Next()
 {
+	printf("%d %d",HZ_buff_current,cerrent_FM.Fr_searched);
 	if(cerrent_FM.Fr_searched!=0)
 	{
-		if(cerrent_FM.Fr_searched==(HZ_buff_current+1)){
+		if(cerrent_FM.Fr_searched!=(HZ_buff_current+1)){
 			HZ_buff_current++;
-			tea5767_Set(HZ_buff[HZ_buff_current], MUTE_OFF, SEARCH_ON, SEARCH_UP, FM_ADC_LEVEL);		
+			FM_Set(HZ_buff[HZ_buff_current]);
+			//tea5767_Set(HZ_buff[HZ_buff_current], MUTE_OFF, SEARCH_ON, SEARCH_UP, FM_ADC_LEVEL);		
+			//delay_ms(100);
+			tea5767_ReadStatus(&cerrent_FM);
+		GUI_draw(&cerrent_FM);
 		}
 	}
-	else{}
+	else{LCD_ShowString(60,40,"NOFOUND");}
 }
 
 void FM_Last()
@@ -33,10 +57,15 @@ void FM_Last()
 	{
 		if(HZ_buff_current>0){
 			HZ_buff_current--;
-			tea5767_Set(HZ_buff[HZ_buff_current], MUTE_OFF, SEARCH_ON, SEARCH_UP, FM_ADC_LEVEL);		
+			FM_Set(HZ_buff[HZ_buff_current]);
+			//tea5767_Set(HZ_buff[HZ_buff_current], MUTE_OFF, SEARCH_ON, SEARCH_UP, FM_ADC_LEVEL);
+			///delay_ms(100);	
+			tea5767_ReadStatus(&cerrent_FM);
+		GUI_draw(&cerrent_FM);			
+				
 		}
 	}
-	else{}
+	else{LCD_ShowString(60,40,"NOFOUND");}
 }
 
 void FM_search()

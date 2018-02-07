@@ -20,7 +20,8 @@ int main(void)
 	LCD_Init();	
 	Pen_Int_Set(ENABLE);//使能触控中断
 	Touch_Init();
-     //printf("xfac:%f   yfac:%f  xoff:%f  yoff:%f \n",Pen_Point.xfac,Pen_Point.yfac,Pen_Point.xoff,Pen_Point.yoff);//触控测试参数
+	// printf("%f%f%f%f",Pen_Point.xfac,Pen_Point.yfac,Pen_Point.xoff,Pen_Point.yoff);
+ // printf("xfac:%f   yfac:%f  xoff:%f  yoff:%f \n",Pen_Point.xfac,Pen_Point.yfac,Pen_Point.xoff,Pen_Point.yoff);//触控测试参数
 	FM_dinit();//播放默认频道
 	//FM_test();
 	while(1)

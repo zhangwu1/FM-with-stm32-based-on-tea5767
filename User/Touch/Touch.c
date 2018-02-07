@@ -16,6 +16,7 @@
 #include "stdlib.h"
 #include "math.h"
 
+
 /* Private typedef -----------------------------------------------------------*/
 /* Private define ------------------------------------------------------------*/
 Pen_Holder Pen_Point;	/* 定义笔实体 */ 
@@ -178,7 +179,7 @@ void Convert_Pos(void)
 	if(Read_ADS2(&Pen_Point.X,&Pen_Point.Y))
 	{
 		Pen_Point.X0=Pen_Point.xfac*Pen_Point.X+Pen_Point.xoff;
-		Pen_Point.Y0=Pen_Point.yfac*Pen_Point.Y+Pen_Point.yoff;  
+		Pen_Point.Y0=340-Pen_Point.yfac*Pen_Point.Y+Pen_Point.yoff;  
 	}
 }
 //触摸屏校准代码
@@ -319,15 +320,15 @@ void Touch_Init()
   //	EXTI_GenerateSWInterrupt(EXTI_Line4);
 
 	LCD_Clear(WHITE);//清屏
-    Touch_Adjust();  //屏幕校准,带自动保存	   
+  // Touch_Adjust();  //屏幕校准,带自动保存	   
 }
 void Touch_Configuration()
 {
 	GPIO_InitTypeDef GPIO_InitStructure;
 	
 	//对触控屏校准参数初始化
-	Pen_Point.xfac=0.133067;
-	Pen_Point.yfac=-0.183126;
+	Pen_Point.xfac=0.123067;
+	Pen_Point.yfac=0.183126;
 	Pen_Point.xoff=0.000000;
 	Pen_Point.yoff=0.000000;
 	
