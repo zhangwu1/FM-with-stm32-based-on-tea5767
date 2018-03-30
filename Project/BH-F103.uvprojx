@@ -147,7 +147,7 @@
             <RestoreSysVw>1</RestoreSysVw>
           </Target>
           <RunDebugAfterBuild>0</RunDebugAfterBuild>
-          <TargetSelection>11</TargetSelection>
+          <TargetSelection>6</TargetSelection>
           <SimDlls>
             <CpuDll></CpuDll>
             <CpuDllArguments></CpuDllArguments>
@@ -161,7 +161,7 @@
             <PeripheralDll></PeripheralDll>
             <PeripheralDllArguments></PeripheralDllArguments>
             <InitializationFile></InitializationFile>
-            <Driver>STLink\ST-LINKIII-KEIL_SWO.dll</Driver>
+            <Driver>Segger\JL2CM3.dll</Driver>
           </TargetDlls>
         </DebugOption>
         <Utilities>
@@ -619,14 +619,14 @@
           <GroupName>IIc</GroupName>
           <Files>
             <File>
-              <FileName>Delay.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\delay\Delay.c</FilePath>
-            </File>
-            <File>
               <FileName>i2c.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\i2c\i2c.c</FilePath>
+            </File>
+            <File>
+              <FileName>Delay.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\delay\Delay.c</FilePath>
             </File>
           </Files>
         </Group>
@@ -657,6 +657,16 @@
               <FileName>TEA5767.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\User\tea5767\TEA5767.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>Flash</GroupName>
+          <Files>
+            <File>
+              <FileName>Flash.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\User\Flash\Flash.c</FilePath>
             </File>
           </Files>
         </Group>

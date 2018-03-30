@@ -11,6 +11,7 @@
 void NVIC_Configuration(void);//中断初始化
 extern int TOUCH_LOC;//按键判断
 extern TEA5767_T cerrent_FM;
+extern uint16_t HZ_buff[100];
 int main(void)
 {
 
@@ -42,8 +43,8 @@ int main(void)
 				FM_Next();
 			break;
 		}
-
 	}
+	
 	
 }
 void NVIC_Configuration(void)

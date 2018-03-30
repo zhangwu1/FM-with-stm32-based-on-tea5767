@@ -11,4 +11,5 @@ void FM_search(void);
 void 	FM_test(void);
 void FM_Next(void);
 void FM_Last(void);
+void FM_Set(int HZ);
 #endif
